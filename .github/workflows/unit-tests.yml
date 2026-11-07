@@ -11,26 +11,31 @@ jobs:
     strategy:
       matrix:
         include:
-          # iRODS 4.2.7 clients on Ubuntu 16.04
+#          # iRODS 4.2.7 clients on Ubuntu 16.04
+#          - irods: "4.2.7"
+#            build_image: "ghcr.io/wtsi-npg/ub-16.04-irods-clients-dev-4.2.7:latest"
+#            server_image: "ghcr.io/wtsi-npg/ub-16.04-irods-4.2.7:latest"
+#            experimental: true
+#          # iRODS 4.2.7 clients on Ubuntu 16.04 vs. 4.2.7-engineering server
+#          - irods: "4.2.7-engineering"
+#            build_image: "ghcr.io/wtsi-npg/ub-16.04-irods-clients-dev-4.2.7-engineering:latest"
+#            server_image: "ghcr.io/wtsi-npg/ub-16.04-irods-4.2.7-engineering:latest"
+#            experimental: false
+          # iRODS 4.2.7 clients on Ubuntu 22.04
           - irods: "4.2.7"
             build_image: "ghcr.io/wtsi-npg/ub-16.04-irods-clients-dev-4.2.7:latest"
-            server_image: "ghcr.io/wtsi-npg/ub-16.04-irods-4.2.7:latest"
-            experimental: true
-          # iRODS 4.2.7 clients on Ubuntu 16.04 vs. 4.2.7-engineering server
-          - irods: "4.2.7-engineering"
-            build_image: "ghcr.io/wtsi-npg/ub-16.04-irods-clients-dev-4.2.7-engineering:latest"
-            server_image: "ghcr.io/wtsi-npg/ub-16.04-irods-4.2.7-engineering:latest"
-            experimental: false
+            server_image: "ghcr.io/wtsi-npg/ub-22.04-irods-4.3.4:latest"
+            experimental:  true
           # iRODS 4.3.4 clients on Ubuntu 22.04
           - irods: "4.3.4"
             build_image: "ghcr.io/wtsi-npg/ub-22.04-irods-clients-dev-4.3.4:latest"
             server_image: "ghcr.io/wtsi-npg/ub-22.04-irods-4.3.4:latest"
             experimental: false
-          # iRODS 4.3.5 clients on Ubuntu 22.04
-          - irods: "4.3.5"
-            build_image: "ghcr.io/wtsi-npg/ub-22.04-irods-clients-dev-4.3.5:latest"
-            server_image: "ghcr.io/wtsi-npg/ub-22.04-irods-4.3.5:latest"
-            experimental: false
+#          # iRODS 4.3.5 clients on Ubuntu 22.04
+#          - irods: "4.3.5"
+#            build_image: "ghcr.io/wtsi-npg/ub-22.04-irods-clients-dev-4.3.5:latest"
+#            server_image: "ghcr.io/wtsi-npg/ub-22.04-irods-4.3.5:latest"
+#            experimental: false
 
     services:
       irods-server:
@@ -46,6 +51,10 @@ jobs:
           --health-interval 10s
           --health-timeout 20s
           --health-retries 6
+
+
+    env:
+      irodsProt: 0
 
     steps:
       - name: "Checkout"
