@@ -54,7 +54,7 @@ jobs:
 
 
     env:
-      irodsProt: 0
+      irodsProt: 1
 
     steps:
       - name: "Checkout"
